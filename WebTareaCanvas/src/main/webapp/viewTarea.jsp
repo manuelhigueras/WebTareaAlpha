@@ -12,7 +12,26 @@
         <%@include file="WEB-INF/view/bootstrap.jspf" %>
         <title>Vista de la Tarea</title>
     </head>
-    <body>
-        
+    <body class="container p-3 my-3 border bg-dark">
+        <section class="container p-3 my-3 border bg-dark">
+            <form action="" method="">
+                <div class="form-group">
+                  <label class="text-secondary" for="id">Id:</label>
+                  <input type="text" class="form-control" id="id" value="XXXXX" name="id" disabled>
+                </div>                
+                <div class="form-group">
+                  <label class="text-secondary" for="desc">Descripcion:</label>
+                  <input type="text" class="form-control" id="desc" value="XXXXXX" name="desc" disabled>
+                </div>
+                <div class="form-group">
+                  <label class="text-secondary" for="est">Estado:</label>
+                  <input type="text" class="form-control" id="est" value="XXXXXX" name="est" disabled>
+                </div>
+                <div class="container-fluid">
+                  <button type="submit" class="btn btn-primary">Volver al administrador</button>
+                </div>                
+            </form>
+        </section>
+        <footer class="text-center pie"> Derechos Reservados &copy; 2020-9999 </footer> 
     </body>
 </html>

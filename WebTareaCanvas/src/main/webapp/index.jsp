@@ -10,12 +10,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="WEB-INF/view/bootstrap.jspf" %>
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <title>Asistente de Tareas</title>
     </head>
     <body>
         <header class="text-white" id="cabecera">
             <h3>Canva Asistente</h3>
         </header>
+        <nav>
+            <c:choose >
+                <c:when test="${ not empty sessionScope.usuario}">
+                    <h5> Usuario:  ${ sessionScope.usuario.nombre } 
+                                   ${ sessionScope.usuario.apellido  }</h5>
+                    <a class="btn-primary text-secondary" href="logout">logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="btn-primary text-secondary" href="auth.jsp">login</a>
+                </c:otherwise>
+            </c:choose>            
+        </nav>
         <section class="">
             <div class="container-fluid">
                 <div class="row">

@@ -13,6 +13,21 @@
         <title>Creando una tarea</title>
     </head>
     <body>
-        
+        <section class="container p-3 my-3 border bg-dark">
+            <form action="" method="">              
+                <div class="form-group">
+                  <label class="text-secondary" for="desc">Descripcion:</label>
+                  <input type="text" class="form-control" id="desc" value="XXXXXX" name="desc" required>
+                </div>
+                <div class="form-group">
+                  <label class="text-secondary" for="est">Estado:</label>
+                  <input type="text" class="form-control" id="est" value="XXXXXX" name="est" required>
+                </div>
+                <div class="container-fluid">
+                  <button type="submit" class="btn btn-primary">Crear</button>
+                </div>                
+            </form>
+        </section>   
+        <footer class="text-center pie"> Derechos Reservados &copy; 2020-9999 </footer> 
     </body>
 </html>
