@@ -13,149 +13,115 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <title>Asistente de Tareas</title>
     </head>
-    <body>
-        <header class="text-white" id="cabecera">
-            <h3>Canva Asistente</h3>
-        </header>
-        <nav>
-            <c:choose >
-                <c:when test="${ not empty sessionScope.usuario}">
-                    <h5> Usuario:  ${ sessionScope.usuario.nombre } 
-                                   ${ sessionScope.usuario.apellido  }</h5>
-                    <a class="btn-primary text-secondary" href="logout">logout</a>
-                </c:when>
-                <c:otherwise>
-                    <a class="btn-primary text-secondary" href="auth.jsp">login</a>
-                </c:otherwise>
-            </c:choose>            
-        </nav>
-        <section class="">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <table class="table table-warning table-striped table-hover">
-                        <thead>
-                        <tr>
-                          <th>Id_Cliente</th>
-                          <th>Descripcion</th>
-                          <th>Estado</th>
-                          <th>Archivado</th>
-                        </tr> 
-                        </thead>
-                        <tbody>
-                          <tr>
-                              <td><a class="text-body" href="#">1</a></td>
-                              <td><a class="text-body" href="#">Implementar Bootstrap</a></td>
-                              <td><a class="text-body" href="#">To Do</a></td>
-                              <td><a class="text-body" href="#">1</a></td>
-                          </tr>
-                          <tr>
-                              <td><a class="text-body" href="">2</a></td>
-                              <td><a class="text-body" href="">Implementar Gui del canvas en Html</a></td>
-                              <td><a class="text-body" href="">To Do</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                          <tr>
-                            <td><a class="text-body" href="">3</a></td>
-                            <td><a class="text-body" href="">Implementar Botones Add, modif, Elim en html</a></td>
-                            <td><a class="text-body" href="">To Do</a></td>
-                            <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="container-fluid">
-                        <input class="btn-outline-primary" type="submit" value=">"/>
-                    </div>
-                    <div class="container-fluid">
-                        <input class="btn-outline-primary" type="submit" value="<"/>
-                    </div>
-                    <div class="col-md-4">
-                        <table class="table table-warning table-striped table-hover">
-                        <thead>
-                        <tr>
-                          <th>Id_Cliente</th>
-                          <th>Descripcion</th>
-                          <th>Estado</th>
-                          <th>Archivado</th>
-                        </tr> 
-                        </thead>
-                        <tbody>
-                          <tr>
-                              <td><a class="text-body" href="">1</a></td>
-                              <td><a class="text-body" href="">Implementar Bootstrap</a></td>
-                              <td><a class="text-body" href="">In Process</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                          <tr>
-                              <td><a class="text-body" href="">2</a></td>
-                              <td><a class="text-body" href="">Implementar Gui del canvas en Html</a></td>
-                              <td><a class="text-body" href="">In Process</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                          <tr>
-                              <td><a class="text-body" href="">3</a></td>
-                              <td><a class="text-body" href="">Implementar Botones Add, modif, Elim en html</a></td>
-                              <td><a class="text-body" href="">In Process</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="container-fluid">
-                        <input class="btn-outline-primary" type="submit" value=">"/>
-                      </div>
-                      <div class="container-fluid">
-                        <input class="btn-outline-primary" type="submit" value="<"/>
-                      </div>                        
-                    </div>
-                    <div class="col-md-4">
-                        <table class="table table-warning table-striped table-hover">
-                        <thead>
-                        <tr>
-                          <th>Id_Cliente</th>
-                          <th>Descripcion</th>
-                          <th>Estado</th>
-                          <th>Archivado</th>
-                        </tr> 
-                        </thead>
-                        <tbody>
-                            <tr class="text-body">
-                              <td><a class="text-body" href="">1</a></td>
-                              <td><a class="text-body" href="">Implementar Bootstrap</a></td>
-                              <td><a class="text-body" href="">Done</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                          <tr class="text-body">
-                              <td><a class="text-body" href="">2</a></td>
-                              <td><a class="text-body" href="">Implementar Gui del canvas en Html</a></td>
-                              <td><a class="text-body" href="">Done</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                          <tr class="text-body">
-                              <td><a class="text-body" href="">3</a></td>
-                              <td><a class="text-body" href="">Implementar Botones Add, modif, Elim en html</a></td>
-                              <td><a class="text-body" href="">Done</a></td>
-                              <td><a class="text-body" href="">1</a></td>
-                          </tr>
-                        </tbody>
-                      </table>                    
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4 container-fluidSpecial">
-                        <a class="btn btn btn-outline-primary" href="#">Agregar una tarea</a>
-                    </div>
-                    <div class="col-md-4 container-fluidSpecial">
-                        <a class="btn btn btn-outline-primary" href="#">Modificar una tarea</a>
-                    </div>
-                    <div class="col-md-4 container-fluidSpecial">
-                        <a class="btn btn btn-outline-primary" href="#">Eliminar una tarea</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer class="text-white" id="pie"> Derechos Reservados &copy; 2020-9999 </footer>
+    <body class="container p-3 my-3">
+        <%@include file="WEB-INF/view/header.jspf" %>
+        <div class="espaciadoHor">
+            <%@include file="WEB-INF/view/menu.jspf" %>
+        </div>
+        <div class="border">
+            <table class="table">
+                <thead class="bg-ToDo tableSpecial">
+                <tr>
+                  <th>Id_Cliente</th>
+                  <th>Descripcion</th>
+                  <th>Estado</th>
+                  <th></th>
+                  <th></th>
+                </tr> 
+                </thead>
+                <tbody class="table-primary">
+                  <tr>
+                      <td><a class="text-body">1</a></td>
+                      <td><a class="text-body">Implementar Bootstrap</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                      <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                  <tr>
+                      <td><a class="text-body">2</a></td>
+                      <td><a class="text-body">Implementar Gui del canvas en Html</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                      <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                  <tr>
+                    <td><a class="text-body">3</a></td>
+                    <td><a class="text-body">Implementar Botones Add, modif, Elim en html</a></td>
+                    <td><a class="text-body">To Do</a></td>
+                    <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                    <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                </tbody>
+            </table>         
+            <table class="table">
+                <thead class="bg-InProgress tableSpecial">
+                <tr>
+                  <th>Id_Cliente</th>
+                  <th>Descripcion</th>
+                  <th>Estado</th>
+                  <th></th>
+                  <th></th>
+                </tr> 
+                </thead>
+                <tbody class="table-primary">
+                  <tr>
+                      <td><a class="text-body">1</a></td>
+                      <td><a class="text-body">Implementar Bootstrap</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                      <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                  <tr>
+                      <td><a class="text-body">2</a></td>
+                      <td><a class="text-body">Implementar Gui del canvas en Html</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                      <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                  <tr>
+                    <td><a class="text-body">3</a></td>
+                    <td><a class="text-body">Implementar Botones Add, modif, Elim en html</a></td>
+                    <td><a class="text-body">To Do</a></td>
+                    <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                    <td><button class="btn btn-success" type="submit">Done</button></td>
+                  </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead class="bg-Done tableSpecial">
+                <tr>
+                  <th>Id_Cliente</th>
+                  <th>Descripcion</th>
+                  <th>Estado</th>
+                  <th></th>
+                  <th></th>
+                </tr> 
+                </thead>
+                <tbody class="table-primary">
+                  <tr>
+                      <td><a class="text-body">1</a></td>
+                      <td><a class="text-body">Implementar Bootstrap</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                      <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                  </tr>
+                  <tr>
+                      <td><a class="text-body">2</a></td>
+                      <td><a class="text-body">Implementar Gui del canvas en Html</a></td>
+                      <td><a class="text-body">To Do</a></td>
+                      <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                      <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                  </tr>
+                  <tr>
+                    <td><a class="text-body">3</a></td>
+                    <td><a class="text-body">Implementar Botones Add, modif, Elim en html</a></td>
+                    <td><a class="text-body">To Do</a></td>
+                    <td><button class="btn btn-danger" type="submit">To Do</button></td>
+                    <td><button class="btn btn-warning" type="submit">In Progress</button></td>
+                  </tr>
+                </tbody>
+            </table>            
+        </div>     
+        <%@include file="WEB-INF/view/pie.jspf" %>
     </body>
 </html>

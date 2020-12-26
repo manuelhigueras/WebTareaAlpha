@@ -1,0 +1,74 @@
+<%@page import="java.util.Collection"%>
+<%@page import="com.modal.Tarea"%>
+<%@page import="com.servicio.db"%>
+
+<% Collection<Tarea> lista = db.getListaToDo(); %>
+<% Collection<Tarea> lista2 = db.getListaInProgress(); %>
+<% Collection<Tarea> lista3 = db.getListaDone(); %>
+
+<table class="table">
+    <thead class="bg-ToDo tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Tarea t: lista){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
+          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
+          <td><a class="text-body"><%= t.getEstado() %></a></td>
+          <td><a href="#" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a href="#" class="btn btn-success" type="submit">Done</a></td>
+      </tr>
+    </tbody>
+    <%}%>
+</table>    
+<table class="table">
+    <thead class="bg-InProgress tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Tarea t: lista2){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
+          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
+          <td><a class="text-body"><%= t.getEstado() %></a></td>
+          <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="#" class="btn btn-success" type="submit">Done</a></td>
+      </tr>
+    </tbody>
+    <%}%>
+</table>
+<table class="table">
+    <thead class="bg-Done tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Tarea t: lista3){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
+          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
+          <td><a class="text-body"><%= t.getEstado() %></a></td>
+          <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="#" class="btn btn-warning" type="submit">In Progress</a></td>
+      </tr>
+    </tbody>
+    <%}%>
+</table>

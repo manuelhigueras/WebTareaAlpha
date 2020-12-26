@@ -10,10 +10,26 @@ and open the template in the editor.
 
 body{
     /*text-align: center;*/
-    background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-thumb.jpg");
+    background-image: url("https://besthqwallpapers.com/img/original/106338/vertical-wooden-boards-4k-wooden-carving-background-brown-wooden-texture-wooden-backgrounds.jpg");
     /*("C:\Users\Manuel\Documents\NetBeansProjects\0012_Db_Bank_html\public_html\img\Fondo.jpg")*/
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.bg-ToDo{
+    background-color: #ea240f;
+}
+
+.bg-InProgress{
+    background-color: #eadc0f;
+}
+
+.bg-Done{
+    background-color: #35ea0f;
+}
+
+.bg-fonds{
+    background-color: #FF6347;
 }
 
 a{
@@ -51,6 +67,10 @@ a:hover{
 
 .espaciado {
     padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.espaciadoHor {
     padding-bottom: 15px;
 }
 
