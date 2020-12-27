@@ -8,6 +8,14 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.wui.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SwitchToDoAInProgress</servlet-name>
+        <servlet-class>com.wui.SwitchToDoAInProgress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SwitchToDoADone</servlet-name>
+        <servlet-class>com.wui.SwitchToDoADone</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SwitchToDoAInProgress</servlet-name>
+        <url-pattern>/tarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SwitchToDoADone</servlet-name>
+        <url-pattern>/tarea-mod</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

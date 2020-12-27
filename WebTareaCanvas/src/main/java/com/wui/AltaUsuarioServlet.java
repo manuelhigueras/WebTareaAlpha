@@ -7,7 +7,7 @@ package com.wui;
 
 import com.domain.exceptions.DBException;
 import com.modal.Usuario;
-import com.servicio.db;
+import com.servicio.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -68,7 +68,7 @@ public class AltaUsuarioServlet extends HttpServlet {
         if (valido) {
             Usuario usuario = new Usuario(paramEmail, paramPwd, paramNombre, paramApell);
             try {
-                db.addUsuario(usuario);
+                bd.addUsuario(usuario);
                 // add usuario ATRIBUTO DE SESION
                 //El usuario no manda jSessionId , crea una nueva sesion
                 //sino devuelve la sesión existente para es id

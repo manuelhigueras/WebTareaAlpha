@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 public class loginServer {
 
     public void login(String email, String clave, HttpSession sesion) throws LoginException {
-        //En db ver si existe y coincide email y clave
-        Collection<Usuario> usuarios = db.getUsuarios();
+        //En bd ver si existe y coincide email y clave
+        Collection<Usuario> usuarios = bd.getUsuarios();
         Usuario usrEncontrado = null;
         for(Usuario u: usuarios){
            if(u.getEmail().equals(email)){

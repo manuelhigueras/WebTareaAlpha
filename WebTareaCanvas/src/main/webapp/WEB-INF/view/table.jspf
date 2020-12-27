@@ -1,10 +1,11 @@
+<%@page import="com.servicio.bd"%>
+<%@page import="com.modal.Cuaderno"%>
 <%@page import="java.util.Collection"%>
 <%@page import="com.modal.Tarea"%>
-<%@page import="com.servicio.db"%>
 
-<% Collection<Tarea> lista = db.getListaToDo(); %>
-<% Collection<Tarea> lista2 = db.getListaInProgress(); %>
-<% Collection<Tarea> lista3 = db.getListaDone(); %>
+<% Collection<Cuaderno> lista = bd.getListaToDo(); %>
+<% Collection<Cuaderno> lista2 = bd.getListaInProgress(); %>
+<% Collection<Cuaderno> lista3 = bd.getListaDone(); %>
 
 <table class="table">
     <thead class="bg-ToDo tableSpecial">
@@ -16,14 +17,14 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Tarea t: lista){ %>
+    <% for(Cuaderno c: lista){ %>
     <tbody class="table-primary">
       <tr>
-          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
-          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
-          <td><a class="text-body"><%= t.getEstado() %></a></td>
-          <td><a href="#" class="btn btn-warning" type="submit">In Progress</a></td>
-          <td><a href="#" class="btn btn-success" type="submit">Done</a></td>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
+          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>" class="btn btn-success" type="submit">Done</a></td>
       </tr>
     </tbody>
     <%}%>
@@ -38,12 +39,12 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Tarea t: lista2){ %>
+    <% for(Cuaderno c: lista2){ %>
     <tbody class="table-primary">
       <tr>
-          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
-          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
-          <td><a class="text-body"><%= t.getEstado() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
           <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
           <td><a href="#" class="btn btn-success" type="submit">Done</a></td>
       </tr>
@@ -60,12 +61,12 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Tarea t: lista3){ %>
+    <% for(Cuaderno c: lista3){ %>
     <tbody class="table-primary">
       <tr>
-          <td><a class="text-body"><%= t.getIdTarea() %></a></td>
-          <td><a class="text-body"><%= t.getDescripcion() %></a></td>
-          <td><a class="text-body"><%= t.getEstado() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
           <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
           <td><a href="#" class="btn btn-warning" type="submit">In Progress</a></td>
       </tr>
