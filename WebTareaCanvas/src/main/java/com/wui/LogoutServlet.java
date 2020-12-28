@@ -23,7 +23,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         loginServer service = new loginServer();
         service.logout(req.getSession());
-        RequestDispatcher rd = req.getRequestDispatcher(".jsp");
-        rd.forward(req, resp);
+        resp.sendRedirect("index.jsp");
+//        RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+//        rd.forward(req, resp);
     }
 }

@@ -9,6 +9,7 @@ import com.modal.Cuaderno;
 import com.modal.Tarea;
 import com.servicio.bd;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Set;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Manuel
  */
-public class SwitchToDoADone extends HttpServlet {
+public class SwitchProgressToDo extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,10 +40,10 @@ public class SwitchToDoADone extends HttpServlet {
        Cuaderno c = null;
        
        if(cas == 1){
-            lista = bd.listaApuntadorGeneralToDo();
+            lista = bd.listaApuntadorGeneralInProgress();
        }
        else{
-            lista = bd.listaApuntadorGeneralInProgress();
+            lista = bd.listaApuntadorGeneralDone();
        }
        if (id == null) {
            mensaje = "Debe indicar un id numérico";
@@ -67,10 +68,10 @@ public class SwitchToDoADone extends HttpServlet {
         desc = String.valueOf(descripcion);
         est = String.valueOf(estado);
         
-        bd.switchTareaDone(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est)));
+        bd.switchTareaToDo(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est)));
         
         req.setAttribute("mensaje", mensaje);
-        resp.sendRedirect("viewTareaAll.jsp");        
+        resp.sendRedirect("viewTareaAll.jsp");               
     }
-    
+
 }

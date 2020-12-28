@@ -23,8 +23,8 @@
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
-          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>" class="btn btn-warning" type="submit">In Progress</a></td>
-          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>" class="btn btn-success" type="submit">Done</a></td>
+          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-success" type="submit">Done</a></td>
       </tr>
     </tbody>
     <%}%>
@@ -45,8 +45,8 @@
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
-          <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
-          <td><a href="#" class="btn btn-success" type="submit">Done</a></td>
+          <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>?case=2" class="btn btn-success" type="submit">Done</a></td>
       </tr>
     </tbody>
     <%}%>
@@ -67,8 +67,8 @@
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
-          <td><a href="#" class="btn btn-danger" type="submit">To Do</a></td>
-          <td><a href="#" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-warning" type="submit">In Progress</a></td>
       </tr>
     </tbody>
     <%}%>

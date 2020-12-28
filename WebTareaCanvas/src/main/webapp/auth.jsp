@@ -16,7 +16,7 @@
         <header class="jumbotron text-center bg-dark ">
             <h3 class="text-secondary">Autenticacion de Usuario</h3>
         </header>
-        <form action ="" method="" class="container p-3 my-3 border bg-dark">
+        <form action ="login" method="post" class="container p-3 my-3 border bg-dark">
             <div class="form-group">
                 <label for="email" class="text-secondary">Email:</label>
                <input type="text" class="form-control" class="text-secondary" id="email" placeholder="Enter username" name="email" required>

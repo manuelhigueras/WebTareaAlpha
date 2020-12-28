@@ -26,18 +26,25 @@ public class SwitchToDoAInProgress extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String id = req.getParameter("id");
+       String caso = req.getParameter("case");
        int id_new = 0;
+       int cas = Integer.parseInt(caso);
        String mensaje = null;
        String desc, est;
        desc = null;
        est = null;
        Object descripcion = null;
        Object estado = null;
+       Set<Entry<Integer,Cuaderno>> lista = null;
        Boolean valido = false;
        Cuaderno c = null;
        
-       Set<Entry<Integer,Cuaderno>> lista = bd.listaApuntadorGeneral();
-
+       if(cas == 1){
+        lista = bd.listaApuntadorGeneralToDo();
+       }
+       else{
+        lista = bd.listaApuntadorGeneralDone();
+       }
        if (id == null) {
            mensaje = "Debe indicar un id numérico";
            valido = false;
@@ -61,9 +68,7 @@ public class SwitchToDoAInProgress extends HttpServlet {
         desc = String.valueOf(descripcion);
         est = String.valueOf(estado);
         
-        //System.out.println("TENGO EL VALOR " + aux.getTarea().getIdTarea());
-        
-        bd.switchTareaInProgress(id_new, new Cuaderno(new Tarea(id_new, desc, est)));
+        bd.switchTareaInProgress(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est)));
         
         req.setAttribute("mensaje", mensaje);
         resp.sendRedirect("viewTareaAll.jsp");

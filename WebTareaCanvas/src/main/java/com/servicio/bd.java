@@ -75,25 +75,76 @@ public class bd {
         setContInProgress();
     }
 
-    public static Set listaApuntadorGeneral(){
+    public static Set listaApuntadorGeneralToDo(){
         Set<Entry<Integer,Cuaderno>> listaAux = listaToDo.entrySet();
         return listaAux;
     }
     
-    public static synchronized void switchTareaInProgress(int id, Cuaderno c){
-        listaToDo.remove(id);
-        setContToDoRest();
-        c.getTarea().setIdTarea(getContInProgress());
-        c.getTarea().setEstado("In Progress");
-        addTareaListaInProgress(c);
+    public static Set listaApuntadorGeneralDone(){
+        Set<Entry<Integer,Cuaderno>> listaAux = listaDone.entrySet();
+        return listaAux;
+    }
+    
+    public static Set listaApuntadorGeneralInProgress(){
+        Set<Entry<Integer,Cuaderno>> listaAux = listaInProgress.entrySet();
+        return listaAux;
+    }
+    
+    public static synchronized void switchTareaToDo(int caso, int id, Cuaderno c){
+        if(caso == 1){
+            listaInProgress.remove(id);
+            setContInProgressRest();
+            c.getTarea().setIdTarea(getContToDo());
+            c.getTarea().setEstado("To Do");
+            addTareaListaToDo(c);
+        }
+        else{
+            if(caso == 2){
+                listaDone.remove(id);
+                setContDoneRest();
+                c.getTarea().setIdTarea(getContToDo());
+                c.getTarea().setEstado("To Do");
+                addTareaListaToDo(c);
+            }
+        }
+    }
+    
+    public static synchronized void switchTareaInProgress(int caso, int id, Cuaderno c){
+        if(caso == 1){
+            listaToDo.remove(id);
+            setContToDoRest();
+            c.getTarea().setIdTarea(getContInProgress());
+            c.getTarea().setEstado("In Progress");
+            addTareaListaInProgress(c);
+        }
+        else{
+            if(caso == 2){
+               listaDone.remove(id);
+               setContDoneRest();
+               c.getTarea().setIdTarea(getContInProgress());
+               c.getTarea().setEstado("In Progress");
+               addTareaListaInProgress(c);             
+            }
+        }
     }
 
-    public static synchronized void switchTareaDone(int id, Cuaderno c){
-        listaToDo.remove(id);
-        setContToDoRest();
-        c.getTarea().setIdTarea(getContDone());
-        c.getTarea().setEstado("Done");
-        addTareaListaInProgress(c);
+    public static synchronized void switchTareaDone(int caso, int id, Cuaderno c){
+        if(caso == 1){
+            listaToDo.remove(id);
+            setContToDoRest();
+            c.getTarea().setIdTarea(getContDone());
+            c.getTarea().setEstado("Done");
+            addTareaListaDone(c);
+        }
+        else{
+            if(caso == 2){
+                listaInProgress.remove(id);
+                setContInProgressRest();
+                c.getTarea().setIdTarea(getContDone());
+                c.getTarea().setEstado("Done");
+                addTareaListaDone(c);               
+            }
+        }
     }    
     
     
@@ -112,8 +163,7 @@ public class bd {
             System.out.println(c.getKey() + "/// " + a);
         }
     }
-    
-    
+       
 //////////////////////////////////////////////////////////////////////////////
     
     public static Map<Integer, Cuaderno> getListaToDoMap() {
@@ -144,12 +194,16 @@ public class bd {
         return contToDo;
     }
 
+    public static void setContInProgress(){
+        contInProgress++;
+    }
+    
+    public static void setContInProgressRest(){
+        contInProgress--;
+    }        
+    
     public static Integer getContInProgress() {
         return contInProgress;
-    }
-
-    public static void setContInProgress() {
-        contInProgress++;
     }
 
     public static Integer getContDone() {
@@ -159,6 +213,10 @@ public class bd {
     public static void setContDone() {
         contDone++;
     }
+
+    public static void setContDoneRest() {
+        contDone--;
+    }    
         
     public synchronized static Collection<Usuario> getUsuarios() {
         return usuarios;

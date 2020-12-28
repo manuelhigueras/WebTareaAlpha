@@ -63,16 +63,18 @@ public class LoginServlet extends HttpServlet {
         //si ok  index.jsp
         String jspAMostrar = "";
         if (valido) {
-            jspAMostrar = "index.jsp";
+            jspAMostrar = "viewTareaAll.jsp";
         } else {
             jspAMostrar = "login.jsp";
             req.setAttribute("msgErrorEmail", msgErrorEmail);
             req.setAttribute("msgErrorPwd", msgErrorPwd);
             req.setAttribute("msgErrorLogin", msgErrorLogin);
         }
+
+        resp.sendRedirect(jspAMostrar);
         
-        RequestDispatcher rd = req.getRequestDispatcher(jspAMostrar);
-        rd.forward(req, resp);
+//        RequestDispatcher rd = req.getRequestDispatcher(jspAMostrar);
+//        rd.forward(req, resp);
     }
 
 }

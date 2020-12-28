@@ -27,9 +27,8 @@
             <div class="col text-danger">${ requestScope.msgError }</div>
             <div class="col text-danger">${ requestScope.msgError }</div>
             <div class="container espaciado">
-              <form action="" method="" class="needs-validation" novalidate>
+              <form action="alta" method="post" class="needs-validation" novalidate>
                 <div class="form-group">
-                  <!--- String nombre, String apellido-----> 
                   <label class="text-secondary" for="email">Email:</label>
                   <input type="text" class="form-control" id="email" placeholder="Introduce un correo" name="email" required>
                 </div>
@@ -39,7 +38,7 @@
                 </div>
                 <div class="form-group">
                   <label for="password" class="text-secondary">Password:</label>
-                  <input type="password" class="form-control" id="password" placeholder="Introduce una contraseña" name="password" required>
+                  <input type="password" class="form-control" id="pwd" placeholder="Introduce una contraseña" name="pwd" required>
                 </div>                  
                 <div class="form-group">
                   <label for="nombre" class="text-secondary">Nombre:</label>
