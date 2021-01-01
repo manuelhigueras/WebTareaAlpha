@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm justify-content-center espaciado">
+    <ul class="nav">
+        <li class="nav-item">
+            <c:choose>
+                <c:when test="${ not empty sessionScope.usuario}">
+                    <li class="nav-item bg-dark">
+                        <h5> Usuario:  ${ sessionScope.usuario.nombre } 
+                                   ${ sessionScope.usuario.apellido  }</h5>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="logout">logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="viewTareaCreada.jsp">Agregar</a>
+                    </li>                    
+                </c:when>
+                <c:otherwise>
+                    <a class="btn btn-primary" href="auth.jsp">login</a>
+                </c:otherwise>
+            </c:choose> 
+        </li>
+    </ul>
+</nav>

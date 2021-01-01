@@ -1,0 +1,13 @@
+com\wui\AltaUsuarioServlet.class
+com\wui\SwitchProgressToDo.class
+com\servicio\loginServer.class
+com\modal\Tarea.class
+com\domain\exceptions\DBException.class
+com\wui\LogoutServlet.class
+com\modal\Usuario.class
+com\wui\SwitchToDoAInProgress.class
+com\wui\SwitchToDoADone.class
+com\domain\exceptions\LoginException.class
+com\servicio\bd.class
+com\wui\LoginServlet.class
+com\modal\Cuaderno.class

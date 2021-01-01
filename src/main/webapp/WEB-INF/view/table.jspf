@@ -1,0 +1,79 @@
+<%@page import="com.servicio.bd"%>
+<%@page import="com.modal.Cuaderno"%>
+<%@page import="java.util.Collection"%>
+<%@page import="com.modal.Tarea"%>
+
+<% Collection<Cuaderno> lista = bd.getListaToDo(); %>
+<% Collection<Cuaderno> lista2 = bd.getListaInProgress(); %>
+<% Collection<Cuaderno> lista3 = bd.getListaDone(); %>
+
+<table class="table">
+    <thead class="bg-ToDo tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Cuaderno c: lista){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
+          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-success" type="submit">Done</a></td>
+          <td><a class="btn btn-primary" href="new-libro?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
+          <td><a class="btn btn-primary" href="viewTareaEliminar.jsp">Eliminar</a></td>   
+      </tr>
+    </tbody>
+    <%}%>
+</table>    
+<table class="table">
+    <thead class="bg-InProgress tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Cuaderno c: lista2){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
+          <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>?case=2" class="btn btn-success" type="submit">Done</a></td>
+      </tr>
+    </tbody>
+    <%}%>
+</table>
+<table class="table">
+    <thead class="bg-Done tableSpecial">
+    <tr>
+      <th>Id_Cliente</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+    </tr> 
+    </thead>
+    <% for(Cuaderno c: lista3){ %>
+    <tbody class="table-primary">
+      <tr>
+          <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
+          <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
+          <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-danger" type="submit">To Do</a></td>
+          <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-warning" type="submit">In Progress</a></td>
+      </tr>
+    </tbody>
+    <%}%>
+</table>
