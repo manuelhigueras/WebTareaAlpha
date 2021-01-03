@@ -32,6 +32,10 @@
         <servlet-name>ModificarTareaServlet</servlet-name>
         <servlet-class>com.wui.ModificarTareaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BajaTareaServlet</servlet-name>
+        <servlet-class>com.wui.BajaTareaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ModificarTareaServlet</servlet-name>
         <url-pattern>/modificar-tarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BajaTareaServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

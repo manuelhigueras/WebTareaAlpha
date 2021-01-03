@@ -8,6 +8,7 @@ package com.wui;
 import com.domain.exceptions.DBException;
 import com.modal.Cuaderno;
 import com.modal.Tarea;
+import com.servicio.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -54,16 +55,30 @@ public class ModificarTareaServlet extends HttpServlet {
                 msgEstado = "ERROR";
             }  
         }
-        
-//        if (valido) {
-//            cuaderno = new Cuaderno(new Tarea());
-//            try {
-//                bd.modifyBiblioteca(id, );
-//            } catch (DBException e) {
-//                msgErrorDisponibilidad = e.getMessage();
-//                valido = false;               
-//            }
-//        }        
+       
+        try {   
+            if (valido) {
+                if(estadoNum == 1){
+                    cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "To Do"));
+                    bd.modifyTareaToDo(Integer.parseInt(id), cuaderno);
+                }
+                else{
+                    if(estadoNum == 2){
+                        cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "In Progress"));
+                        bd.modifyTareaInProgress(Integer.parseInt(id), cuaderno);
+                    }
+                    else{
+                        if(estadoNum == 3){
+                            cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "Done"));
+                            bd.modifyTareaDone(Integer.parseInt(id), cuaderno);
+                        }
+                    }
+                }
+            }
+        } catch (DBException e) {
+            msgErrorApp = e.getMessage();
+            valido = false;               
+        } 
         
     }
 

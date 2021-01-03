@@ -241,4 +241,44 @@ public class bd {
             throw new DBException("No ha sido añadido. Ya existe");
         }
     }
+
+    public synchronized static void modifyTareaToDo(int id, Cuaderno c) throws DBException {
+        try{
+            listaToDo.replace(id, c);
+        }
+        catch(Exception ex){
+            throw new DBException(ex.getMessage());
+        }
+    }
+
+    public synchronized static void modifyTareaInProgress(int id, Cuaderno c) throws DBException {
+        try{
+            listaInProgress.replace(id, c);
+        }
+        catch(Exception ex){
+            throw new DBException(ex.getMessage());
+        }
+    }
+
+    public synchronized static void modifyTareaDone(int id, Cuaderno c) throws DBException {
+        try{
+            listaDone.replace(id, c);
+        }
+        catch(Exception ex){
+            throw new DBException(ex.getMessage());
+        }
+    }    
+    
+    public static synchronized void deleteToDo(int id){
+        listaToDo.remove(id);
+    }
+    
+    public static synchronized void deleteInProgress(int id){
+        listaInProgress.remove(id);
+    }
+    
+    public static synchronized void deleteDone(int id){
+        listaDone.remove(id);
+    }
+    
 }
