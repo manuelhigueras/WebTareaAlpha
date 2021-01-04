@@ -11,6 +11,7 @@ import com.modal.Tarea;
 import com.servicio.bd;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -79,6 +80,20 @@ public class ModificarTareaServlet extends HttpServlet {
             msgErrorApp = e.getMessage();
             valido = false;               
         } 
+     
+        String jspAMostrar = "";
+        if (valido) {
+            jspAMostrar = "viewTareaAll.jsp";
+        } else {
+            jspAMostrar = "viewTareaCreada.jsp";
+            req.setAttribute("msgErrorApp", msgErrorApp);
+            req.setAttribute("msgDescripcion", msgDescripcion);
+            req.setAttribute("msgEstado", msgEstado);
+        }
+//        RequestDispatcher rd = req.getRequestDispatcher(jspAMostrar);
+//        rd.forward(req, resp);                
+        
+        resp.sendRedirect(jspAMostrar);
         
     }
 

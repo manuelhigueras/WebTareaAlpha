@@ -22,7 +22,7 @@ public class BajaTareaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        String estado = req.getParameter("estado");
+        String estado = String.valueOf(req.getParameter("estado"));
         String msgEstado = null;
         int id_new = 0;
         int estadoNum = -1;
@@ -45,7 +45,12 @@ public class BajaTareaServlet extends HttpServlet {
         else{
             valido = false;
             try{
-                estadoNum = Integer.parseInt(estado);            
+                if(estado.equals("To Do"))
+                    estadoNum = 1;     
+                if(estado.equals("In Progress"))
+                    estadoNum = 2;
+                if(estado.equals("Done"))
+                    estadoNum = 3;
             }catch(NumberFormatException e){
                 msgEstado = "ERROR";
             }  
@@ -63,8 +68,9 @@ public class BajaTareaServlet extends HttpServlet {
         }
        
         req.setAttribute("mensaje", mensaje);
-        RequestDispatcher rd = req.getRequestDispatcher("viewTareaAll.jsp");
-        rd.forward(req, resp);        
+//        RequestDispatcher rd = req.getRequestDispatcher("viewTareaAll.jsp");
+//        rd.forward(req, resp);        
+        resp.sendRedirect("viewTareaAll.jsp");
     }
     
 }

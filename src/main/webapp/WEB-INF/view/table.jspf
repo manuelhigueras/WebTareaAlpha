@@ -27,8 +27,8 @@
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
           <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-warning" type="submit">In Progress</a></td>
           <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-success" type="submit">Done</a></td>
-          <td><a class="btn btn-primary" href="new-libro?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
-          <td><a class="btn btn-primary" href="viewTareaEliminar.jsp">Eliminar</a></td>   
+          <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
+          <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>   
       </tr>
     </tbody>
     <%}%>
@@ -41,6 +41,8 @@
       <th>Estado</th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
     </tr> 
     </thead>
     <% for(Cuaderno c: lista2){ %>
@@ -51,6 +53,8 @@
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
           <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=1" class="btn btn-danger" type="submit">To Do</a></td>
           <td><a href="tarea-mod?id=<%= c.getTarea().getIdTarea() %>?case=2" class="btn btn-success" type="submit">Done</a></td>
+          <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
+          <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
     </tbody>
     <%}%>
@@ -63,6 +67,8 @@
       <th>Estado</th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
     </tr> 
     </thead>
     <% for(Cuaderno c: lista3){ %>
@@ -73,6 +79,8 @@
           <td><a class="text-body"><%= c.getTarea().getEstado() %></a></td>
           <td><a href="tarea-switch?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-danger" type="submit">To Do</a></td>
           <td><a href="tarea?id=<%= c.getTarea().getIdTarea() %>&case=2" class="btn btn-warning" type="submit">In Progress</a></td>
+          <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
+          <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
     </tbody>
     <%}%>
