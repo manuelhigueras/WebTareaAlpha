@@ -12,21 +12,21 @@
         <%@include file="WEB-INF/view/bootstrap.jspf" %>
         <title>Registro de usuario</title>
     </head>
-    <body>
+    <body class="container p-3 my-3 border bg-dark">
         <header class="jumbotron text-center bg-dark">
             <h3 class="text-secondary">Registro de usuario</h3>
         </header>
         <section class="bg-dark seccion">
-            <c:if test="${not empty requestScope.msgError }" >
+            <div class="container p-3 my-3 border container espaciado">
+            <c:if test="${not empty requestScope.msgErrorAlta }" >
                 <div class="alert alert-warning" role="alert">
-                    ${requestScope.msgError}
+                    ${requestScope.msgErrorAlta}
                 </div>
             </c:if>
-            <div class="col text-danger">${ requestScope.msgError }</div>
-            <div class="col text-danger">${ requestScope.msgError }</div>
-            <div class="col text-danger">${ requestScope.msgError }</div>
-            <div class="col text-danger">${ requestScope.msgError }</div>
-            <div class="container espaciado">
+            <div class="col text-danger">${ requestScope.msgErrorEmail }</div>
+            <div class="col text-danger">${ requestScope.msgErrorPwd }</div>
+            <div class="col text-danger">${ requestScope.msgErrorNombre }</div>
+            <div class="col text-danger">${ requestScope.msgErrorApellido }</div>                
               <form action="alta" method="post" class="needs-validation" novalidate>
                 <div class="form-group">
                   <label class="text-secondary" for="email">Email:</label>

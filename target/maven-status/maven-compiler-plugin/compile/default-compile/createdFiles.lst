@@ -1,11 +1,14 @@
 com\wui\AltaUsuarioServlet.class
 com\wui\SwitchProgressToDo.class
+com\wui\AltaTareaServlet.class
+com\wui\BajaTareaServlet.class
 com\servicio\loginServer.class
 com\modal\Tarea.class
 com\domain\exceptions\DBException.class
 com\wui\LogoutServlet.class
 com\modal\Usuario.class
 com\wui\SwitchToDoAInProgress.class
+com\wui\ModificarTareaServlet.class
 com\wui\SwitchToDoADone.class
 com\domain\exceptions\LoginException.class
 com\servicio\bd.class

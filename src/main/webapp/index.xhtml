@@ -1,23 +1,47 @@
-<%-- 
-    Document   : index
-    Created on : 22-dic-2020, 10:25:09
-    Author     : user
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="WEB-INF/view/bootstrap.jspf" %>
-        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        <title>Asistente de Tareas</title>
-    </head>
-    <body class="container p-3 my-3">
-        <%@include file="WEB-INF/view/header.jspf" %>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>        
+        <title>Index</title>
+    </h:head>
+    <h:body class="container p-3 my-3">
+        <header class="jumbotron" id="cabecera">
+            <h3>Canva Asistente</h3>
+        </header>     
         <div class="espaciadoHor">
-            <%@include file="WEB-INF/view/menu.jspf" %>
-        </div>
+            <nav class="navbar navbar-expand-sm justify-content-center espaciado">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <c:choose>
+                            <c:when test="${ not empty sessionScope.usuario}">
+                                <li class="btn nav-item text-white bg-dark">
+                                    <h5> Usuario:  ${ sessionScope.usuario.nombre } 
+                                               ${ sessionScope.usuario.apellido  }</h5>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" href="logout">logout</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-primary" href="viewTareaCreada.jsp">Agregar</a>
+                                </li>                    
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-primary" href="auth.jsp">login</a>
+                            </c:otherwise>
+                        </c:choose> 
+                    </li>
+                </ul>
+            </nav>            
+        </div>        
         <div class="border">
             <table class="table">
                 <thead class="bg-ToDo tableSpecial">
@@ -121,7 +145,10 @@
                   </tr>
                 </tbody>
             </table>            
-        </div>     
-        <%@include file="WEB-INF/view/pie.jspf" %>
-    </body>
+        </div>
+        <div class="espaciado">
+            <footer class="text-white pie"> Derechos Reservados &copy; 2020-9999 </footer>
+        </div>        
+    </h:body>
 </html>
+

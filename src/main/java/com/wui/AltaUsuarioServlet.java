@@ -71,9 +71,9 @@ public class AltaUsuarioServlet extends HttpServlet {
                 bd.addUsuario(usuario);
                 HttpSession session = req.getSession();
                 session.setAttribute("usuario", usuario);
+                valido = false; 
             } catch (DBException e) {
-                msgErrorAlta = e.getMessage();
-                valido = false;               
+                msgErrorAlta = e.getMessage();         
             }
         }//fin datos validos
 
@@ -89,8 +89,10 @@ public class AltaUsuarioServlet extends HttpServlet {
             req.setAttribute("msgErrorAlta", msgErrorAlta);
         }
         
-        RequestDispatcher rd = req.getRequestDispatcher(jspAMostrar);
-        rd.forward(req, resp);
+        resp.sendRedirect(jspAMostrar);
+        
+//        RequestDispatcher rd = req.getRequestDispatcher(jspAMostrar);
+//        rd.forward(req, resp);
 
     }
     
