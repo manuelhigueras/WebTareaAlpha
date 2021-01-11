@@ -31,6 +31,7 @@ public class SwitchToDoAInProgress extends HttpServlet {
        String id = req.getParameter("id");
        String caso = req.getParameter("case");
        int id_new = 0;
+       int id_user = bd.getIdUser();
        int cas = Integer.parseInt(caso);
        String mensaje = null;
        String desc, est;
@@ -72,7 +73,7 @@ public class SwitchToDoAInProgress extends HttpServlet {
         est = String.valueOf(estado);
         
         try {
-            bd.switchTareaInProgress(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est)));
+            bd.switchTareaInProgress(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est, id_user)));
         } catch (DBException ex) {
             Logger.getLogger(SwitchToDoAInProgress.class.getName()).log(Level.SEVERE, null, ex);
         }

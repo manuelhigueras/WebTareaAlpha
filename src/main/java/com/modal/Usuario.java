@@ -13,18 +13,28 @@ import java.util.Objects;
  * @author user
  */
 public class Usuario implements Serializable{
+    private Integer id;
     private String email;
     private String password;
     private String nombre;
     private String apellido;
 
-    public Usuario(String email, String password, String nombre, String apellido) {
+    public Usuario(Integer id, String email, String password, String nombre, String apellido) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id++;
+    }
+    
     public String getEmail() {
         return email;
     }

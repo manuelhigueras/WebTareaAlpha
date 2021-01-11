@@ -58,19 +58,20 @@ public class ModificarTareaServlet extends HttpServlet {
         }
        
         try {   
+            int idUser = bd.getIdUser();
             if (valido) {
                 if(estadoNum == 1){
-                    cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "To Do"));
+                    cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "To Do", idUser));
                     bd.modifyTareaToDo(Integer.parseInt(id), cuaderno);
                 }
                 else{
                     if(estadoNum == 2){
-                        cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "In Progress"));
+                        cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "In Progress", idUser));
                         bd.modifyTareaInProgress(Integer.parseInt(id), cuaderno);
                     }
                     else{
                         if(estadoNum == 3){
-                            cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "Done"));
+                            cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "Done", idUser));
                             bd.modifyTareaDone(Integer.parseInt(id), cuaderno);
                         }
                     }

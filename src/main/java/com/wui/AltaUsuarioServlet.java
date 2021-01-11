@@ -66,7 +66,8 @@ public class AltaUsuarioServlet extends HttpServlet {
 
         //3.  SI NO HAY ALGUN ERROR intentar grabar
         if (valido) {
-            Usuario usuario = new Usuario(paramEmail, paramPwd, paramNombre, paramApell);
+            int id_new = bd.getIdUser() + 1;
+            Usuario usuario = new Usuario(id_new, paramEmail, paramPwd, paramNombre, paramApell);
             try {
                 bd.addUsuario(usuario);
                 HttpSession session = req.getSession();

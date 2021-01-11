@@ -5,11 +5,13 @@ public class Tarea {
     private int idTarea;
     private String descripcion;
     private String estado;
+    private int idUser;
 
-    public Tarea(int idTarea, String descripcion, String estado) {
+    public Tarea(int idTarea, String descripcion, String estado, int idUser) {
         this.idTarea = idTarea;
         this.descripcion = descripcion;
         this.estado = estado;
+        this.idUser = idUser;
     }
 
     public int getIdTarea() {
@@ -20,6 +22,14 @@ public class Tarea {
         this.idTarea = idTarea;
     }
 
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }

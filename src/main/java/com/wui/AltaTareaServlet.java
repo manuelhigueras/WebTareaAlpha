@@ -68,7 +68,7 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 1){        
             try {
                 id = bd.getContToDo();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "To Do"));
+                cuaderno = new Cuaderno(new Tarea(id, descripcion, "To Do", bd.getIdUser()));
                 bd.addTareaListaToDo(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +78,7 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 2){        
             try {
                 id = bd.getContToDo();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "In Progress"));
+                cuaderno = new Cuaderno(new Tarea(id, descripcion, "In Progress", bd.getIdUser()));
                 bd.addTareaListaInProgress(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +88,7 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 3){        
             try {
                 id = bd.getContDone();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "Done"));
+                cuaderno = new Cuaderno(new Tarea(id, descripcion, "Done", bd.getIdUser()));
                 bd.addTareaListaDone(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);

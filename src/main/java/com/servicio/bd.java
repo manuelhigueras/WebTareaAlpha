@@ -29,6 +29,7 @@ public class bd {
     private static Integer contInProgress = 1;
     private static Map<Integer, Cuaderno> listaDone;
     private static Integer contDone = 1;    
+    private static Integer idUser = 1;
        
     static{
         usuarios = new HashSet<Usuario>();
@@ -36,24 +37,24 @@ public class bd {
         listaInProgress = new HashMap<Integer, Cuaderno>();
         listaDone = new HashMap<Integer, Cuaderno>();
         
-        usuarios.add(new Usuario("manuel@gmail.com", "1234", "Manuel", "Xitzag"));
-        usuarios.add(new Usuario("mariaterez@gmail.com", "1234", "Maria", "Terez"));
+        usuarios.add(new Usuario(1,"manuel@gmail.com", "1234", "Manuel", "Xitzag"));
+        usuarios.add(new Usuario(2,"mariaterez@gmail.com", "1234", "Maria", "Terez"));
         
         try{
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el modal", "To Do")));
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el servicio", "To Do")));  
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el wui", "To Do")));        
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el exception", "To Do")));
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el modal", "To Do", getIdUser())));
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el servicio", "To Do", getIdUser())));  
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el wui", "To Do", getIdUser())));        
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el exception", "To Do", getIdUser())));
 
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Survival", "In Progress")));
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress")));  
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress")));        
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Chequear el jsp", "In Progress")));
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Survival", "In Progress", getIdUser())));
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress", getIdUser())));  
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress", getIdUser())));        
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Chequear el jsp", "In Progress", getIdUser())));
 
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Formato html", "Done")));
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Servicio html", "Done")));  
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Modal", "Done")));        
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Exception", "Done")));  
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Formato html", "Done", getIdUser())));
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Servicio html", "Done", getIdUser())));  
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Modal", "Done", getIdUser())));        
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Exception", "Done", getIdUser())));  
         }
         catch(DBException ex){
             
@@ -179,6 +180,14 @@ public class bd {
        
 //////////////////////////////////////////////////////////////////////////////
     
+    public static synchronized int getIdUser(){
+       return idUser;
+    }
+    
+    public static void setIdUser() {
+        idUser++;
+    }
+    
     public static Map<Integer, Cuaderno> getListaToDoMap() {
         return listaToDo;
     }   
@@ -240,6 +249,7 @@ public class bd {
         if (!seAñade) {
             throw new DBException("No ha sido añadido. Ya existe");
         }
+        setIdUser();
     }
 
     public synchronized static void modifyTareaToDo(int id, Cuaderno c) throws DBException {
