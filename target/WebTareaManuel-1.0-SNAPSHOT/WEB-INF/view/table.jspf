@@ -1,3 +1,4 @@
+<%@page import="com.modal.Usuario"%>
 <%@page import="com.servicio.bd"%>
 <%@page import="com.modal.Cuaderno"%>
 <%@page import="java.util.Collection"%>
@@ -6,6 +7,7 @@
 <% Collection<Cuaderno> lista = bd.getListaToDo(); %>
 <% Collection<Cuaderno> lista2 = bd.getListaInProgress(); %>
 <% Collection<Cuaderno> lista3 = bd.getListaDone(); %>
+<% Collection<Usuario> listaId = bd.getUsuarios(); %>
 
 <table class="table">
     <thead class="bg-ToDo tableSpecial">
@@ -19,8 +21,10 @@
       <th></th>
     </tr> 
     </thead>
+    <% for(Usuario id: listaId) { %>
     <% for(Cuaderno c: lista){ %>
     <tbody class="table-primary">
+      <% if(c.getTarea().getIdUser() == id.getId()){ %>   
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -30,6 +34,8 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>   
       </tr>
+      <% } %>
+      <% } %>
     </tbody>
     <%}%>
 </table>    
@@ -45,8 +51,10 @@
       <th></th>
     </tr> 
     </thead>
+    <% for(Usuario id: listaId) { %>
     <% for(Cuaderno c: lista2){ %>
     <tbody class="table-primary">
+      <% if(c.getTarea().getIdUser() == id.getId()){ %>     
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -56,6 +64,8 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
+      <%}%>
+      <%}%>
     </tbody>
     <%}%>
 </table>
@@ -71,8 +81,10 @@
       <th></th>
     </tr> 
     </thead>
+    <% for(Usuario id: listaId) { %>
     <% for(Cuaderno c: lista3){ %>
     <tbody class="table-primary">
+      <% if(c.getTarea().getIdUser() == id.getId()){ %>   
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -82,6 +94,8 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
+      <% } %>
+      <% } %>
     </tbody>
     <%}%>
 </table>

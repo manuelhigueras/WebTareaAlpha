@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class bd {
     
-    private static Set<Usuario> usuarios;
+    private static Map<Integer,Usuario> usuarios;
     private static Map<Integer, Cuaderno> listaToDo;
     private static Integer contToDo = 1;
     private static Map<Integer, Cuaderno> listaInProgress;
@@ -32,29 +32,30 @@ public class bd {
     private static Integer idUser = 1;
        
     static{
-        usuarios = new HashSet<Usuario>();
+        usuarios = new HashMap<Integer,Usuario>();
         listaToDo = new HashMap<Integer, Cuaderno>();
         listaInProgress = new HashMap<Integer, Cuaderno>();
         listaDone = new HashMap<Integer, Cuaderno>();
         
-        usuarios.add(new Usuario(1,"manuel@gmail.com", "1234", "Manuel", "Xitzag"));
-        usuarios.add(new Usuario(2,"mariaterez@gmail.com", "1234", "Maria", "Terez"));
+        usuarios.put(getIdUser(),new Usuario(getIdUser(),"manuel@gmail.com", "1234", "Manuel", "Xitzag"));
         
         try{
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el modal", "To Do", getIdUser())));
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el servicio", "To Do", getIdUser())));  
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el wui", "To Do", getIdUser())));        
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el exception", "To Do", getIdUser())));
+              
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el modal", "To Do", 1)));
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el servicio", "To Do", 1)));  
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el wui", "To Do", 1)));        
+            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el exception", "To Do", 1)));
 
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Survival", "In Progress", getIdUser())));
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress", getIdUser())));  
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress", getIdUser())));        
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Chequear el jsp", "In Progress", getIdUser())));
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Survival", "In Progress", 1)));
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress", 1)));  
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress", 1)));        
+            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Chequear el jsp", "In Progress", 1)));
 
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Formato html", "Done", getIdUser())));
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Servicio html", "Done", getIdUser())));  
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Modal", "Done", getIdUser())));        
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Exception", "Done", getIdUser())));  
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Formato html", "Done", 1)));
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Servicio html", "Done", 1)));  
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Modal", "Done", 1)));        
+            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Exception", "Done", 1)));  
+            
         }
         catch(DBException ex){
             
@@ -165,16 +166,24 @@ public class bd {
 /*TESTED*/    
     public static void main(String[] args) {
         Set<Entry<Integer,Cuaderno>> listaAux = listaToDo.entrySet();
+        Set<Entry<Integer,Usuario>> puntero = usuarios.entrySet();
         Object a,b,ca;
         a = null;
         b = null;
         ca = null;
         Cuaderno t = null;
         String a2 = null;
-        for(Entry c: listaAux){
-            t = (Cuaderno) c.getValue();
-            a = t.getTarea().getEstado();
-            System.out.println(c.getKey() + "/// " + a);
+        int id = -1;
+        Usuario usu = null;
+//        for(Entry c: listaAux){
+//            t = (Cuaderno) c.getValue();
+//            a = t.getTarea().getEstado();
+//            System.out.println(c.getKey() + "/// " + a);
+//        }
+        for(Entry c: puntero){
+            usu = (Usuario) c.getValue();
+            id = usu.getId();
+            System.out.println(usu + "/// " + id);
         }
     }
        
@@ -241,15 +250,12 @@ public class bd {
     }    
         
     public synchronized static Collection<Usuario> getUsuarios() {
-        return usuarios;
+        return usuarios.values();
     }
     
     public synchronized static void addUsuario(Usuario u) throws DBException {
-        boolean seAñade = usuarios.add(u);
-        if (!seAñade) {
-            throw new DBException("No ha sido añadido. Ya existe");
-        }
         setIdUser();
+        usuarios.put(getIdUser(),u);
     }
 
     public synchronized static void modifyTareaToDo(int id, Cuaderno c) throws DBException {
