@@ -11,7 +11,6 @@ import com.modal.Tarea;
 import com.modal.Usuario;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -23,13 +22,13 @@ import java.util.Set;
 public class bd {
     
     private static Map<Integer,Usuario> usuarios;
+    private static Integer contUser = 1;
     private static Map<Integer, Cuaderno> listaToDo;
     private static Integer contToDo = 1;
     private static Map<Integer, Cuaderno> listaInProgress;
     private static Integer contInProgress = 1;
     private static Map<Integer, Cuaderno> listaDone;
     private static Integer contDone = 1;    
-    private static Integer idUser = 1;
        
     static{
         usuarios = new HashMap<Integer,Usuario>();
@@ -37,25 +36,25 @@ public class bd {
         listaInProgress = new HashMap<Integer, Cuaderno>();
         listaDone = new HashMap<Integer, Cuaderno>();
         
-        usuarios.put(getIdUser(),new Usuario(getIdUser(),"manuel@gmail.com", "1234", "Manuel", "Xitzag"));
-        
         try{
-              
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el modal", "To Do", 1)));
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el servicio", "To Do", 1)));  
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el wui", "To Do", 1)));        
-            addTareaListaToDo(new Cuaderno(new Tarea(getContToDo(), "diseñar el exception", "To Do", 1)));
+            usuarios.put(getContUser(),new Usuario(getContUser(),"manuel@gmail.com", "1234", "Manuel", "Xitzag"));
+                       
+            addTareaListaToDo(new Cuaderno(getContUser(),new Tarea(getContToDo(), "diseñar el modal", "To Do", getContUser())));
+            addTareaListaToDo(new Cuaderno(getContUser(),new Tarea(getContToDo(), "diseñar el servicio", "To Do", getContUser())));  
+            addTareaListaToDo(new Cuaderno(getContUser(),new Tarea(getContToDo(), "diseñar el wui", "To Do", getContUser())));        
+            addTareaListaToDo(new Cuaderno(getContUser(),new Tarea(getContToDo(), "diseñar el exception", "To Do", getContUser())));
 
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Survival", "In Progress", 1)));
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress", 1)));  
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress", 1)));        
-            addTareaListaInProgress(new Cuaderno(new Tarea(getContInProgress(), "Chequear el jsp", "In Progress", 1)));
+            addTareaListaInProgress(new Cuaderno(getContUser(),new Tarea(getContInProgress(), "Survival", "In Progress", getContUser())));
+            addTareaListaInProgress(new Cuaderno(getContUser(),new Tarea(getContInProgress(), "Agregar el mostrar y add", "In Progress",getContUser())));  
+            addTareaListaInProgress(new Cuaderno(getContUser(),new Tarea(getContInProgress(), "Agregar modificar y eliminar", "In Progress", getContUser())));        
+            addTareaListaInProgress(new Cuaderno(getContUser(),new Tarea(getContInProgress(), "Chequear el jsp", "In Progress", getContUser())));
 
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Formato html", "Done", 1)));
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Servicio html", "Done", 1)));  
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Modal", "Done", 1)));        
-            addTareaListaDone(new Cuaderno(new Tarea(getContDone(), "Exception", "Done", 1)));  
+            addTareaListaDone(new Cuaderno(getContUser(), new Tarea(getContDone(), "Formato html", "Done", getContUser())));
+            addTareaListaDone(new Cuaderno(getContUser(), new Tarea(getContDone(), "Servicio html", "Done", getContUser())));  
+            addTareaListaDone(new Cuaderno(getContUser(), new Tarea(getContDone(), "Modal", "Done", getContUser())));        
+            addTareaListaDone(new Cuaderno(getContUser(), new Tarea(getContDone(), "Exception", "Done", getContUser())));  
             
+            setContUser();
         }
         catch(DBException ex){
             
@@ -166,36 +165,20 @@ public class bd {
 /*TESTED*/    
     public static void main(String[] args) {
         Set<Entry<Integer,Cuaderno>> listaAux = listaToDo.entrySet();
-        Set<Entry<Integer,Usuario>> puntero = usuarios.entrySet();
         Object a,b,ca;
         a = null;
         b = null;
         ca = null;
         Cuaderno t = null;
         String a2 = null;
-        int id = -1;
-        Usuario usu = null;
-//        for(Entry c: listaAux){
-//            t = (Cuaderno) c.getValue();
-//            a = t.getTarea().getEstado();
-//            System.out.println(c.getKey() + "/// " + a);
-//        }
-        for(Entry c: puntero){
-            usu = (Usuario) c.getValue();
-            id = usu.getId();
-            System.out.println(usu + "/// " + id);
+        for(Entry c: listaAux){
+            t = (Cuaderno) c.getValue();
+            a = t.getTarea().getEstado();
+            System.out.println(c.getKey() + "/// " + a);
         }
     }
        
 //////////////////////////////////////////////////////////////////////////////
-    
-    public static synchronized int getIdUser(){
-       return idUser;
-    }
-    
-    public static void setIdUser() {
-        idUser++;
-    }
     
     public static Map<Integer, Cuaderno> getListaToDoMap() {
         return listaToDo;
@@ -248,14 +231,29 @@ public class bd {
     public static void setContDoneRest() {
         contDone--;
     }    
+
+    public static Integer getContUser() {
+        return contUser;
+    }
+
+    public static void setContUser() {
+        contUser++;
+    }
         
     public synchronized static Collection<Usuario> getUsuarios() {
         return usuarios.values();
     }
     
     public synchronized static void addUsuario(Usuario u) throws DBException {
-        setIdUser();
-        usuarios.put(getIdUser(),u);
+        try{
+            if (usuarios.containsValue(u)) {
+                throw new DBException("El libro ya existe con ese id");
+            }
+            setContUser();
+            usuarios.put(contUser, u);
+        }catch(Exception ex){
+            throw new DBException("Error: no se pudo agregar, " + ex.getMessage());
+        }
     }
 
     public synchronized static void modifyTareaToDo(int id, Cuaderno c) throws DBException {

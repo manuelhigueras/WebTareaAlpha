@@ -29,6 +29,7 @@ public class ModificarTareaServlet extends HttpServlet {
         String id, descripcion, estadoSt;
         String msgDescripcion, msgEstado, msgErrorApp;
         int estadoNum = -1;
+        int idUser = -1;
         Boolean valido = true;
         id = req.getParameter("id");
         descripcion = req.getParameter("des");
@@ -58,20 +59,22 @@ public class ModificarTareaServlet extends HttpServlet {
         }
        
         try {   
-            int idUser = bd.getIdUser();
             if (valido) {
                 if(estadoNum == 1){
-                    cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "To Do", idUser));
+                    idUser = bd.getContUser();
+                    cuaderno = new Cuaderno(idUser, new Tarea(Integer.parseInt(id), descripcion, "To Do", idUser));
                     bd.modifyTareaToDo(Integer.parseInt(id), cuaderno);
                 }
                 else{
                     if(estadoNum == 2){
-                        cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "In Progress", idUser));
+                        idUser = bd.getContUser();
+                        cuaderno = new Cuaderno(idUser, new Tarea(Integer.parseInt(id), descripcion, "In Progress", idUser));
                         bd.modifyTareaInProgress(Integer.parseInt(id), cuaderno);
                     }
                     else{
                         if(estadoNum == 3){
-                            cuaderno = new Cuaderno(new Tarea(Integer.parseInt(id), descripcion, "Done", idUser));
+                            idUser = bd.getContUser();
+                            cuaderno = new Cuaderno(idUser, new Tarea(Integer.parseInt(id), descripcion, "Done", idUser));
                             bd.modifyTareaDone(Integer.parseInt(id), cuaderno);
                         }
                     }

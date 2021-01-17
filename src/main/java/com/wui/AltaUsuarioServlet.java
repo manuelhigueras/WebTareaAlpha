@@ -9,8 +9,6 @@ import com.domain.exceptions.DBException;
 import com.modal.Usuario;
 import com.servicio.bd;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,8 +64,8 @@ public class AltaUsuarioServlet extends HttpServlet {
 
         //3.  SI NO HAY ALGUN ERROR intentar grabar
         if (valido) {
-            int id_new = bd.getIdUser() + 1;
-            Usuario usuario = new Usuario(id_new, paramEmail, paramPwd, paramNombre, paramApell);
+            int id = bd.getContUser() + 1;
+            Usuario usuario = new Usuario(id, paramEmail, paramPwd, paramNombre, paramApell);
             try {
                 bd.addUsuario(usuario);
                 HttpSession session = req.getSession();

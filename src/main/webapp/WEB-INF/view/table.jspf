@@ -4,10 +4,10 @@
 <%@page import="java.util.Collection"%>
 <%@page import="com.modal.Tarea"%>
 
+<% Collection<Usuario> listaUser = bd.getUsuarios(); %>
 <% Collection<Cuaderno> lista = bd.getListaToDo(); %>
 <% Collection<Cuaderno> lista2 = bd.getListaInProgress(); %>
 <% Collection<Cuaderno> lista3 = bd.getListaDone(); %>
-<% Collection<Usuario> listaId = bd.getUsuarios(); %>
 
 <table class="table">
     <thead class="bg-ToDo tableSpecial">
@@ -21,10 +21,17 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Usuario id: listaId) { %>
+    <% for(Usuario usu: listaUser) { %>
     <% for(Cuaderno c: lista){ %>
+    <% 
+        int val1, val2;
+        boolean val3;
+        val1 = usu.getId();
+        val2 = c.getTarea().getIdUser();
+        val3 = usu.getAct();
+        
+        if((val1 == val2)&&(val3 == true)){ %>
     <tbody class="table-primary">
-      <% if(c.getTarea().getIdUser() == id.getId()){ %>   
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -34,10 +41,10 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>   
       </tr>
-      <% } %>
-      <% } %>
     </tbody>
-    <%}%>
+    <% } %>
+    <% } %>
+    <% } %>
 </table>    
 <table class="table">
     <thead class="bg-InProgress tableSpecial">
@@ -51,10 +58,18 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Usuario id: listaId) { %>
+    <% for(Usuario usu: listaUser) { %>
     <% for(Cuaderno c: lista2){ %>
+    <% 
+       int val1, val2;
+       boolean val3;
+       val1 = usu.getId();
+       val2 = c.getTarea().getIdUser();
+       val3 = usu.getAct();
+        
+       if((val1 == val2)&&(val3 == true)){
+    %>
     <tbody class="table-primary">
-      <% if(c.getTarea().getIdUser() == id.getId()){ %>     
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -64,9 +79,9 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
-      <%}%>
-      <%}%>
     </tbody>
+    <%}%>
+    <%}%>
     <%}%>
 </table>
 <table class="table">
@@ -81,10 +96,18 @@
       <th></th>
     </tr> 
     </thead>
-    <% for(Usuario id: listaId) { %>
+    <% for(Usuario usu: listaUser) { %>
     <% for(Cuaderno c: lista3){ %>
+    <% 
+        int val1, val2;
+        boolean val3;
+        val1 = usu.getId();
+        val2 = c.getTarea().getIdUser();
+        val3 = usu.getAct();
+        
+        if((val1 == val2)&&(val3 == true)){
+    %>
     <tbody class="table-primary">
-      <% if(c.getTarea().getIdUser() == id.getId()){ %>   
       <tr>
           <td><a class="text-body"><%= c.getTarea().getIdTarea() %></a></td>
           <td><a class="text-body"><%= c.getTarea().getDescripcion() %></a></td>
@@ -94,8 +117,8 @@
           <td><a class="btn btn-primary" href="modificar-tarea?id=<%= c.getTarea().getIdTarea() %>">Modificar</a></td>
           <td><a class="btn btn-primary" href="delete?id=<%= c.getTarea().getIdTarea() %>&estado=<%= c.getTarea().getEstado() %>">Eliminar</a></td>          
       </tr>
-      <% } %>
-      <% } %>
     </tbody>
+    <%}%>
+    <%}%>
     <%}%>
 </table>

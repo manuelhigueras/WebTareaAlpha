@@ -30,8 +30,8 @@ public class SwitchToDoADone extends HttpServlet {
        String id = req.getParameter("id");
        String caso = req.getParameter("case");
        int id_new = 0;
+       int idUser = -1;
        int cas = Integer.parseInt(caso);
-       int id_user = bd.getIdUser();
        String mensaje = null;
        String desc, est;
        desc = null;
@@ -72,7 +72,8 @@ public class SwitchToDoADone extends HttpServlet {
         est = String.valueOf(estado);
         
         try {
-            bd.switchTareaDone(cas, id_new, new Cuaderno(new Tarea(id_new, desc, est, id_user)));
+            idUser = bd.getContUser();
+            bd.switchTareaDone(cas, id_new, new Cuaderno(idUser, new Tarea(id_new, desc, est, idUser)));
         } catch (DBException ex) {
             Logger.getLogger(SwitchToDoADone.class.getName()).log(Level.SEVERE, null, ex);
         }

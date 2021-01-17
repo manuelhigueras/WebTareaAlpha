@@ -2,18 +2,20 @@ package com.modal;
 
 public class Tarea {
     
-    private int idTarea;
+    private Integer idTarea;
     private String descripcion;
     private String estado;
-    private int idUser;
+    private Integer idUser;
 
-    public Tarea(int idTarea, String descripcion, String estado, int idUser) {
+    public Tarea(Integer idTarea, String descripcion, String estado, Integer idUser) {
         this.idTarea = idTarea;
         this.descripcion = descripcion;
         this.estado = estado;
         this.idUser = idUser;
     }
 
+    
+    
     public int getIdTarea() {
         return idTarea;
     }
@@ -22,14 +24,6 @@ public class Tarea {
         this.idTarea = idTarea;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-    
     public String getDescripcion() {
         return descripcion;
     }
@@ -46,6 +40,14 @@ public class Tarea {
         this.estado = estado;
     }
 
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser() {
+        this.idUser++;
+    }
+    
     @Override
     public String toString() {
         return "Tarea{" + "idTarea=" + idTarea + ", descripcion=" + descripcion + ", estado=" + estado + '}';

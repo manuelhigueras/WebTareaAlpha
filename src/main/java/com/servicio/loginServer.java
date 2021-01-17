@@ -35,6 +35,7 @@ public class loginServer {
         else{
             if(usrEncontrado.getPassword().equals(clave)){
                 sesion.setAttribute("usuario", usrEncontrado);
+                usrEncontrado.setAct(true);
             }
             else{
                 throw new LoginException("Clave no valida");
@@ -43,6 +44,11 @@ public class loginServer {
     }
     
     public void logout(HttpSession sesion){
+        Collection<Usuario> lista = bd.getUsuarios();
+        for(Usuario user: lista){
+            if(user.getAct())
+                user.setAct(false);
+        }
         sesion.invalidate();
     }
     

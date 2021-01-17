@@ -10,12 +10,22 @@ package com.modal;
  * @author Manuel
  */
 public class Cuaderno {
+    private int id;
     private Tarea t;
 
-    public Cuaderno(Tarea t) {
+    public Cuaderno(int id, Tarea t) {
         this.t = t;
+        this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public Tarea getTarea() {
         return t;
     }

@@ -13,28 +13,22 @@ import java.util.Objects;
  * @author user
  */
 public class Usuario implements Serializable{
-    private Integer id;
+    private int id;
     private String email;
     private String password;
     private String nombre;
     private String apellido;
+    private Boolean act;
 
-    public Usuario(Integer id, String email, String password, String nombre, String apellido) {
+    public Usuario(int id, String email, String password, String nombre, String apellido) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.act = false;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId() {
-        this.id++;
-    }
-    
     public String getEmail() {
         return email;
     }
@@ -47,6 +41,14 @@ public class Usuario implements Serializable{
         return password;
     }
 
+    public void setAct(Boolean act) {
+        this.act = act;
+    }
+
+    public Boolean getAct() {
+        return act;
+    }
+    
     public void setPassword(String password) {
         this.password = password;
     }
@@ -67,6 +69,14 @@ public class Usuario implements Serializable{
         this.apellido = apellido;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

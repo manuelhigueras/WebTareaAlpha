@@ -34,11 +34,12 @@ public class AltaTareaServlet extends HttpServlet {
         String msgDescripcion, msgEstado;
         Boolean valido;
         Cuaderno cuaderno;
-        int id;
+        int id, IdUser;
         Set<Entry<Integer, Cuaderno>> lista = null;
         descripcion = req.getParameter("desc");
         estadoNum = req.getParameter("est");
         id = -1;
+        IdUser = -1;
         Entry apuntador = null;
         estadoTrat = -1;
         msgDescripcion = null;
@@ -68,7 +69,8 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 1){        
             try {
                 id = bd.getContToDo();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "To Do", bd.getIdUser()));
+                IdUser = bd.getContUser();
+                cuaderno = new Cuaderno(IdUser,new Tarea(id, descripcion, "To Do", IdUser));
                 bd.addTareaListaToDo(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +80,8 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 2){        
             try {
                 id = bd.getContToDo();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "In Progress", bd.getIdUser()));
+                IdUser = bd.getContUser();
+                cuaderno = new Cuaderno(IdUser, new Tarea(id, descripcion, "In Progress", IdUser));
                 bd.addTareaListaInProgress(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +91,8 @@ public class AltaTareaServlet extends HttpServlet {
         if(estadoTrat == 3){        
             try {
                 id = bd.getContDone();
-                cuaderno = new Cuaderno(new Tarea(id, descripcion, "Done", bd.getIdUser()));
+                IdUser = bd.getContUser();
+                cuaderno = new Cuaderno(IdUser, new Tarea(id, descripcion, "Done", IdUser));
                 bd.addTareaListaDone(cuaderno);
             } catch (DBException ex) {
                 Logger.getLogger(AltaTareaServlet.class.getName()).log(Level.SEVERE, null, ex);
